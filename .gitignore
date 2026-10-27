@@ -1,3 +1,12 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+__pycache__/
+*.pyc
+.venv/
+venv/
+settings.json
+settings.json.tmp
+settings.json.bak
+output/*
+!output/.gitkeep

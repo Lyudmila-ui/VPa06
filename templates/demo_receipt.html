@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Демонстрационный чек {{номер_чека}}</title>
+  <style>
+    @font-face {
+      font-family: "ReceiptSans";
+      src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "ReceiptSans";
+      src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @page {
+      size: A4;
+      margin: 14mm;
+      background: #d7e4ea;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #d7e4ea;
+      color: #1c3038;
+      font-family: "ReceiptSans", sans-serif;
+      font-size: 11pt;
+      line-height: 1.35;
+    }
+
+    .sheet {
+      width: 100%;
+    }
+
+    .stamp-wrap {
+      text-align: center;
+      margin: 0 0 6mm;
+    }
+
+    .stamp {
+      display: inline-block;
+      border: 2px solid #9d2c2c;
+      color: #9d2c2c;
+      padding: 6px 16px;
+      font-weight: 700;
+      background: #f4f8fa;
+    }
+
+    h1, p {
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2mm;
+    }
+
+    .place {
+      margin-bottom: 6mm;
+    }
+
+    table.sheet-table {
+      width: 92%;
+      margin: 0 auto 8mm;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    table.sheet-table th,
+    table.sheet-table td {
+      border: 1px solid #5d7680;
+      padding: 7px 8px;
+      text-align: center;
+      vertical-align: middle;
+      overflow-wrap: anywhere;
+      word-wrap: break-word;
+      word-break: break-word;
+      background: #f7fbfc;
+    }
+
+    table.sheet-table thead {
+      display: table-header-group;
+    }
+
+    table.sheet-table tr {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    table.sheet-table th {
+      background: #1f4e5a;
+      color: #f4f8f9;
+      font-weight: 700;
+    }
+
+    .footer-note {
+      width: 92%;
+      margin: 2mm auto 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="stamp-wrap">
+      <div class="stamp">Демонстрационный документ</div>
+    </div>
+    <h1>Мастерская «Северный фитиль»</h1>
+    <p class="place">Васильевский остров, Санкт-Петербург</p>
+    <p class="place">Формирование HTML и PDF не выполняет фискализацию и не создаёт кассовый чек.</p>
+
+    <table class="sheet-table">
+      <colgroup>
+        <col style="width: 32%">
+        <col style="width: 68%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Поле</th>
+          <th>Значение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Номер</td>
+          <td>{{номер_чека}}</td>
+        </tr>
+        <tr>
+          <td>Дата</td>
+          <td>{{дата}}</td>
+        </tr>
+        <tr>
+          <td>Клиент</td>
+          <td>{{клиент}}</td>
+        </tr>
+        <tr>
+          <td>Комментарий</td>
+          <td>{{комментарий}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="sheet-table">
+      <colgroup>
+        <col style="width: 16%">
+        <col style="width: 40%">
+        <col style="width: 12%">
+        <col style="width: 16%">
+        <col style="width: 16%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Позиция</th>
+          <th>Наименование</th>
+          <th>Кол-во</th>
+          <th>Цена</th>
+          <th>Сумма</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{{товар}}<br>{{артикул}}</td>
+          <td>{{количество}}</td>
+          <td>{{цена}}</td>
+          <td>{{сумма}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="sheet-table">
+      <colgroup>
+        <col style="width: 22%">
+        <col style="width: 78%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Пункт</th>
+          <th>Условие демонстрационного документа</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Это макет чека для проверки вёрстки. Он не заменяет кассовый чек.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Документ не отправляется оператору фискальных данных и не содержит фискального признака.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>QR-код фискализации намеренно отсутствует.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Суммы в таблице взяты из CSV и показаны как текст, без расчёта налога.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Длинные слова и строки без пробелов остаются внутри ячейки и переносятся по ширине колонки.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Заголовок этой таблицы повторяется, если строки переходят на следующую страницу.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Свечу из пчелиного воска держите вдали от сквозняка: так лужа вокруг фитиля остаётся ровной.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Перед первым зажжением подрежьте фитиль до пяти миллиметров.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Не оставляйте огонь без присмотра и ставьте свечу на устойчивую негорючую поверхность.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Если воск закрыл фитиль, погасите свечу, остудите её и уберите лишнее деревянной палочкой.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Крафтовую коробку можно сложить повторно: ленту не выбрасывайте, она держит крышку.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Открытку кладут под крышку, а не вплотную к воску, чтобы картон не пропитался маслом.</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Для витрины на Васильевском острове оставляйте между свечами зазор шириной с ладонь.</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Набор «Три огонька» зажигают с центральной свечи, затем с боковых.</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Хлопковый фитиль не сгибают пальцами: от этого он коптит в первые минуты.</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>Псковский воск светлеет у края стакана — это обычный вид ручной заливки, не брак макета.</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>В демонстрационном файле специальные символы из CSV показываются как текст.</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>Повторная генерация не затирает уже созданные HTML и PDF: к имени добавляется суффикс.</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>Шрифт подключён локально из папки fonts и не загружается из интернета.</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>Если эта строка оказалась на новой странице, заголовок таблицы должен быть виден снова.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="footer-note">Демонстрационный документ. Генерация HTML и PDF сама по себе не выполняет фискализацию.</p>
+  </div>
+</body>
+</html>
